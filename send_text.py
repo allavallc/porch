@@ -1,10 +1,11 @@
 import smtplib, ssl
 import os
+from decouple import config
 
 class sendSMS():
 
-    def __init__(self, port = 587, smtp_server = "smtp.gmail.com", sender_email = "adefilippo@gmail.com", receiver_email = "7133043238@txt.att.net",
-                 password= os.environ["PASSWORD"], message = "A person walked by...", context = ssl.create_default_context()):
+    def __init__(self, port = 587, smtp_server = "smtp.gmail.com", sender_email = config('USER_EMAIL'), receiver_email = "7133043238@txt.att.net",
+                 password= config('PASSWORD'), message = "A person walked by...", context = ssl.create_default_context()):
         self.port = port  # For starttls
         self.smtp_server = smtp_server
         self.sender_email = sender_email
