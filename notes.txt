@@ -1,0 +1,3 @@
+environment variables
+https://able.bio/rhett/how-to-set-and-get-environment-variables-in-python--274rgt5
+
