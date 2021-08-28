@@ -2,11 +2,13 @@ import cv2 as cv
 import numpy as np
 import os
 import send_text
+import time
 
 cap = cv.VideoCapture(0)
 whT = 320
 confThreshold = 0.5
 nmsThreshold = 0.2
+pTime = 0
 
 classModelWeightPath = "classes_models_weights/"
 classPath = "classes/"
@@ -116,6 +118,13 @@ while True:
         outputNames = [(layersNames[i[0] - 1]) for i in net.getUnconnectedOutLayers()]
         outputs = net.forward(outputNames)
         findObjects(outputs, img, nets.index(net))
+
+    cTime = time.time()
+    fps = 1 / (cTime - pTime)
+    pTime = cTime
+
+    cv.putText(img, str(int(fps)), (70, 50), cv.FONT_HERSHEY_PLAIN, 3,
+                (255, 0, 0), 3)
 
     #show the image
     cv.imshow('Image', img)
