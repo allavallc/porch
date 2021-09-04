@@ -7,7 +7,7 @@ import imutils
 import cython
 import sys
 
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(0, cv.CAP_DSHOW)
 
 whT = 320
 confThreshold = 0.5
