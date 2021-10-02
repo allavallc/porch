@@ -3,9 +3,8 @@ import numpy as np
 import os
 import send_text
 import time
-import imutils
-import cython
 import sys
+import gpiozero
 
 cap = cv.VideoCapture(0, cv.CAP_DSHOW)
 
@@ -78,6 +77,14 @@ for i in range(len(classesFiles)):
     nets[i].setPreferableBackend(cv.dnn.DNN_BACKEND_OPENCV)
     nets[i].setPreferableTarget(cv.dnn.DNN_TARGET_CPU)
 
+# flash LED lights to indicate it is working
+led = gpiozero.LED(17)
+
+while True:
+    led.on()
+    time.sleep(1)
+    led.off()
+    time.sleep(1)
 
 def findObjects(outputs, img, classIndex):
 
