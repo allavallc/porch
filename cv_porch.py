@@ -85,6 +85,7 @@ while True:
     time.sleep(1)
     led.off()
     time.sleep(1)
+    break
 
 def findObjects(outputs, img, classIndex):
 
