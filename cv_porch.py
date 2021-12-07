@@ -3,8 +3,8 @@ import numpy as np
 import os
 import send_text
 import time
-import sys
-import gpiozero
+from gpiozero.pins.pigpio import PiGPIOFactory
+from gpiozero import LED
 
 cap = cv.VideoCapture(0, cv.CAP_DSHOW)
 
@@ -77,15 +77,21 @@ for i in range(len(classesFiles)):
     nets[i].setPreferableBackend(cv.dnn.DNN_BACKEND_OPENCV)
     nets[i].setPreferableTarget(cv.dnn.DNN_TARGET_CPU)
 
-# flash LED lights to indicate it is working
-led = gpiozero.LED(17)
+# ******  LED TEST
+#factory = PiGPIOFactory()
+# for controlling on remote machine
+#factory = PiGPIOFactory(host='192.168.0.2')
 
-while True:
-    led.on()
-    time.sleep(1)
-    led.off()
-    time.sleep(1)
-    break
+# flash LED lights to indicate it is working
+#led = LED(17, pin_factory=factory)
+
+#while True:
+#    led.on()
+#    time.sleep(1)
+#    led.off()
+#    time.sleep(1)
+#    break
+# ****** END LED TEST
 
 def findObjects(outputs, img, classIndex):
 
